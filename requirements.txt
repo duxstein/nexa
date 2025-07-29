@@ -1,0 +1,56 @@
+# Core Dependencies
+tkinter-tooltip==2.1.0
+pillow>=10.0.0
+psutil>=5.9.0
+requests>=2.31.0
+
+# Speech Recognition & Text-to-Speech
+speechrecognition>=3.10.0
+pyttsx3>=2.90
+pyaudio>=0.2.11
+
+# AI and Natural Language Processing
+transformers>=4.30.0
+torch>=2.0.0
+numpy>=1.24.0
+
+# System Automation
+pyautogui>=0.9.54
+keyboard>=0.13.5
+win32api>=0.0.0
+win32gui>=0.0.0
+win32con>=0.0.0
+win32clipboard>=0.0.0
+psutil>=5.9.0
+
+# File Management
+watchdog>=3.0.0
+send2trash>=1.8.2
+
+# Calendar Integration (Optional)
+google-api-python-client>=2.88.0
+google-auth-httplib2>=0.1.0
+google-auth-oauthlib>=1.0.0
+
+# Database for local storage
+sqlite3
+
+# Configuration
+pyyaml>=6.0
+toml>=0.10.2
+
+# Utilities
+colorama>=0.4.6
+tqdm>=4.65.0
+datetime
+json
+re
+threading
+queue
+logging
+os
+sys
+time
+math
+random
+string
