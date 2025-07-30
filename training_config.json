@@ -1,0 +1,52 @@
+{
+  "training": {
+    "enabled": true,
+    "confidence_threshold": 0.7,
+    "model_preference": "transformer",
+    "fallback_to_rules": true,
+    "auto_train": false
+  },
+  "datasets": {
+    "application_commands": {
+      "enabled": true,
+      "model_types": ["naive_bayes", "transformer"],
+      "refresh_interval": "weekly"
+    },
+    "reminder_commands": {
+      "enabled": true,
+      "model_types": ["naive_bayes", "svm", "transformer"],
+      "refresh_interval": "daily"
+    },
+    "complex_commands": {
+      "enabled": true,
+      "model_types": ["transformer"],
+      "refresh_interval": "monthly"
+    }
+  },
+  "model_settings": {
+    "traditional_models": {
+      "naive_bayes": {
+        "enabled": true,
+        "priority": 1
+      },
+      "svm": {
+        "enabled": true,
+        "priority": 2
+      },
+      "random_forest": {
+        "enabled": true,
+        "priority": 3
+      }
+    },
+    "transformer_models": {
+      "default_model": "distilbert-base-uncased",
+      "max_sequence_length": 512,
+      "batch_size": 8
+    }
+  },
+  "logging": {
+    "level": "INFO",
+    "file": "training.log",
+    "console": true
+  }
+}

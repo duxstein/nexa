@@ -17,11 +17,7 @@ numpy>=1.24.0
 # System Automation
 pyautogui>=0.9.54
 keyboard>=0.13.5
-win32api>=0.0.0
-win32gui>=0.0.0
-win32con>=0.0.0
-win32clipboard>=0.0.0
-psutil>=5.9.0
+pywin32>=306
 
 # File Management
 watchdog>=3.0.0
@@ -33,7 +29,6 @@ google-auth-httplib2>=0.1.0
 google-auth-oauthlib>=1.0.0
 
 # Database for local storage
-sqlite3
 
 # Configuration
 pyyaml>=6.0
@@ -42,15 +37,3 @@ toml>=0.10.2
 # Utilities
 colorama>=0.4.6
 tqdm>=4.65.0
-datetime
-json
-re
-threading
-queue
-logging
-os
-sys
-time
-math
-random
-string

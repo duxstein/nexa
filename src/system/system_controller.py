@@ -33,7 +33,8 @@ class SystemController:
             'calculator': r'C:\Windows\System32\calc.exe',
             'explorer': r'C:\Windows\explorer.exe',
             'cmd': r'C:\Windows\System32\cmd.exe',
-            'powershell': r'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe'
+            'powershell': r'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe',
+            'notion': r'C:\Users\sport\AppData\Local\Programs\Notion\Notion.exe'
         }
         
         self.logger.info("System controller initialized")
@@ -61,9 +62,28 @@ class SystemController:
                 pass
             
             # Try Windows start command
-            subprocess.run(['start', app_name], shell=True, check=True)
-            self.logger.info(f"Launched {app_name} via start command")
-            return True
+            try:
+                subprocess.run(['start', app_name], shell=True, check=True)
+                self.logger.info(f"Launched {app_name} via start command")
+                return True
+            except Exception:
+                pass
+
+            # Search for the app in common locations
+            search_dirs = [
+                os.environ.get('ProgramFiles', 'C:\\Program Files'),
+                os.environ.get('ProgramFiles(x86)', 'C:\\Program Files (x86)'),
+                os.path.join(os.environ.get('LOCALAPPDATA', ''), 'Programs')
+            ]
+
+            for dir in search_dirs:
+                for root, _, files in os.walk(dir):
+                    if f"{app_name}.exe" in files:
+                        app_path = os.path.join(root, f"{app_name}.exe")
+                        subprocess.Popen([app_path] + (args.split() if args else []))
+                        self.logger.info(f"Launched {app_name} from {app_path}")
+                        return True
+
             
         except Exception as e:
             self.logger.error(f"Failed to launch {app_name}: {e}")

@@ -1,0 +1,12 @@
+gui:
+  always_on_top: true
+  theme: dark
+  transparent_glass: false
+hotkeys:
+  activate_nexa: ctrl+shift+n
+  toggle_mic: ctrl+shift+m
+paths:
+  database_file: nexa_data.db
+  log_directory: logs
+user:
+  name: sir

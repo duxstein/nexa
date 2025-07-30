@@ -48,13 +48,10 @@ class Task:
 class TaskManager:
     """Task and reminder management system for NEXA"""
     
-    def __init__(self, database):
+    def __init__(self, db_connection: sqlite3.Connection):
         self.logger = logging.getLogger(__name__)
-        self.database = database
+        self.conn = db_connection
         self.tasks: List[Task] = []
-        
-        # Initialize database tables
-        self._init_database()
         
         # Load existing tasks
         self._load_tasks()
@@ -66,39 +63,12 @@ class TaskManager:
         # Callback for reminder notifications
         self.reminder_callback = None
     
-    def _init_database(self):
-        """Initialize database tables for tasks"""
-        try:
-            cursor = self.database.get_cursor()
-            
-            # Create tasks table
-            cursor.execute('''
-                CREATE TABLE IF NOT EXISTS tasks (
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    description TEXT NOT NULL,
-                    due_date TEXT,
-                    created_date TEXT NOT NULL,
-                    completed_date TEXT,
-                    status TEXT NOT NULL,
-                    priority TEXT NOT NULL,
-                    category TEXT NOT NULL,
-                    notes TEXT,
-                    reminder_time TEXT,
-                    recurring BOOLEAN,
-                    recurring_pattern TEXT
-                )
-            ''')
-            
-            self.database.commit()
-            self.logger.info("Task database initialized")
-            
-        except Exception as e:
-            self.logger.error(f"Error initializing task database: {e}")
+
     
     def _load_tasks(self):
         """Load tasks from database"""
         try:
-            cursor = self.database.get_cursor()
+            cursor = self.conn.cursor()
             cursor.execute('SELECT * FROM tasks WHERE status != ?', (TaskStatus.COMPLETED.value,))
             
             rows = cursor.fetchall()
@@ -140,7 +110,7 @@ class TaskManager:
         
         try:
             # Save to database
-            cursor = self.database.get_cursor()
+            cursor = self.conn.cursor()
             cursor.execute('''
                 INSERT INTO tasks (description, due_date, created_date, status, priority, category, notes, recurring)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?)
@@ -156,7 +126,7 @@ class TaskManager:
             ))
             
             task.id = cursor.lastrowid
-            self.database.commit()
+            self.conn.commit()
             
             # Add to memory
             self.tasks.append(task)

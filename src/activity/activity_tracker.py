@@ -20,19 +20,11 @@ import sqlite3
 class ActivityTracker:
     """Tracks user activity and app usage for productivity insights"""
     
-    def __init__(self, db_path: str = None):
+    def __init__(self, db_connection: sqlite3.Connection):
         self.logger = logging.getLogger(__name__)
         self.tracking = False
         self.track_thread = None
-        
-        # Database setup
-        if db_path:
-            self.db_path = Path(db_path)
-        else:
-            self.db_path = Path.home() / '.nexa' / 'activity.db'
-        
-        # Ensure directory exists
-        self.db_path.parent.mkdir(parents=True, exist_ok=True)
+        self.conn = db_connection
         
         # Current session data
         self.current_session = {
@@ -72,8 +64,7 @@ class ActivityTracker:
             ]
         }
         
-        # Initialize database
-        self._init_database()
+
         
         # Idle detection settings
         self.idle_threshold = 300  # 5 minutes in seconds
@@ -81,64 +72,14 @@ class ActivityTracker:
         
         self.logger.info("Activity tracker initialized")
     
-    def _init_database(self):
-        """Initialize SQLite database for activity tracking"""
-        try:
-            with sqlite3.connect(self.db_path) as conn:
-                cursor = conn.cursor()
-                
-                # Create tables
-                cursor.execute('''
-                    CREATE TABLE IF NOT EXISTS app_usage (
-                        id INTEGER PRIMARY KEY AUTOINCREMENT,
-                        date TEXT NOT NULL,
-                        app_name TEXT NOT NULL,
-                        window_title TEXT,
-                        category TEXT,
-                        start_time TEXT NOT NULL,
-                        end_time TEXT,
-                        duration_seconds INTEGER,
-                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-                    )
-                ''')
-                
-                cursor.execute('''
-                    CREATE TABLE IF NOT EXISTS daily_summary (
-                        id INTEGER PRIMARY KEY AUTOINCREMENT,
-                        date TEXT UNIQUE NOT NULL,
-                        total_active_time INTEGER,
-                        total_idle_time INTEGER,
-                        most_used_app TEXT,
-                        most_used_category TEXT,
-                        productivity_score REAL,
-                        apps_used INTEGER,
-                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-                    )
-                ''')
-                
-                cursor.execute('''
-                    CREATE TABLE IF NOT EXISTS idle_periods (
-                        id INTEGER PRIMARY KEY AUTOINCREMENT,
-                        date TEXT NOT NULL,
-                        start_time TEXT NOT NULL,
-                        end_time TEXT,
-                        duration_seconds INTEGER,
-                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-                    )
-                ''')
-                
-                # Create indexes
-                cursor.execute('CREATE INDEX IF NOT EXISTS idx_app_usage_date ON app_usage(date)')
-                cursor.execute('CREATE INDEX IF NOT EXISTS idx_app_usage_app ON app_usage(app_name)')
-                cursor.execute('CREATE INDEX IF NOT EXISTS idx_daily_summary_date ON daily_summary(date)')
-                
-                conn.commit()
-                
-        except Exception as e:
-            self.logger.error(f"Error initializing database: {e}")
+
     
     def start_tracking(self):
         """Start activity tracking"""
+        if not self.conn:
+            self.logger.error("Cannot start tracking: database connection not available.")
+            return
+
         if not self.tracking:
             self.tracking = True
             self.current_session['start_time'] = datetime.now()
@@ -287,22 +228,21 @@ class ActivityTracker:
             
             app = self.current_session['current_app']
             
-            with sqlite3.connect(self.db_path) as conn:
-                cursor = conn.cursor()
-                cursor.execute('''
-                    INSERT INTO app_usage 
-                    (date, app_name, window_title, category, start_time, end_time, duration_seconds)
-                    VALUES (?, ?, ?, ?, ?, ?, ?)
-                ''', (
-                    self.current_session['app_start_time'].date().isoformat(),
-                    app['app_name'],
-                    app['window_title'][:500],  # Limit title length
-                    app['category'],
-                    self.current_session['app_start_time'].isoformat(),
-                    end_time.isoformat(),
-                    int(duration)
-                ))
-                conn.commit()
+            cursor = self.conn.cursor()
+            cursor.execute('''
+                INSERT INTO app_usage 
+                (date, app_name, window_title, category, start_time, end_time, duration_seconds)
+                VALUES (?, ?, ?, ?, ?, ?, ?)
+            ''', (
+                self.current_session['app_start_time'].date().isoformat(),
+                app['app_name'],
+                app['window_title'][:500],  # Limit title length
+                app['category'],
+                self.current_session['app_start_time'].isoformat(),
+                end_time.isoformat(),
+                int(duration)
+            ))
+            self.conn.commit()
                 
         except Exception as e:
             self.logger.error(f"Error saving app session: {e}")
@@ -316,19 +256,18 @@ class ActivityTracker:
             end_time = datetime.now()
             duration = (end_time - self.current_session['idle_start_time']).total_seconds()
             
-            with sqlite3.connect(self.db_path) as conn:
-                cursor = conn.cursor()
-                cursor.execute('''
-                    INSERT INTO idle_periods 
-                    (date, start_time, end_time, duration_seconds)
-                    VALUES (?, ?, ?, ?)
-                ''', (
-                    self.current_session['idle_start_time'].date().isoformat(),
-                    self.current_session['idle_start_time'].isoformat(),
-                    end_time.isoformat(),
-                    int(duration)
-                ))
-                conn.commit()
+            cursor = self.conn.cursor()
+            cursor.execute('''
+                INSERT INTO idle_periods 
+                (date, start_time, end_time, duration_seconds)
+                VALUES (?, ?, ?, ?)
+            ''', (
+                self.current_session['idle_start_time'].date().isoformat(),
+                self.current_session['idle_start_time'].isoformat(),
+                end_time.isoformat(),
+                int(duration)
+            ))
+            self.conn.commit()
                 
         except Exception as e:
             self.logger.error(f"Error saving idle period: {e}")
@@ -339,11 +278,10 @@ class ActivityTracker:
             target_date = date.today()
         
         try:
-            with sqlite3.connect(self.db_path) as conn:
-                cursor = conn.cursor()
-                
-                # Get app usage for the day
-                cursor.execute('''
+            cursor = self.conn.cursor()
+            
+            # Get app usage for the day
+            cursor.execute('''
                     SELECT app_name, category, SUM(duration_seconds) as total_duration,
                            COUNT(*) as session_count
                     FROM app_usage 
@@ -351,23 +289,23 @@ class ActivityTracker:
                     GROUP BY app_name, category
                     ORDER BY total_duration DESC
                 ''', (target_date.isoformat(),))
-                
-                app_usage = cursor.fetchall()
-                
-                # Get idle time for the day
-                cursor.execute('''
+
+            app_usage = cursor.fetchall()
+
+            # Get idle time for the day
+            cursor.execute('''
                     SELECT SUM(duration_seconds) as total_idle
                     FROM idle_periods 
                     WHERE date = ?
                 ''', (target_date.isoformat(),))
                 
-                idle_result = cursor.fetchone()
-                total_idle = idle_result[0] if idle_result[0] else 0
+            idle_result = cursor.fetchone()
+            total_idle = idle_result[0] if idle_result[0] else 0
                 
                 # Calculate summary
-                total_active = sum(row[2] for row in app_usage)
+            total_active = sum(row[2] for row in app_usage)
                 
-                summary = {
+            summary = {
                     'date': target_date.isoformat(),
                     'total_active_time': total_active,
                     'total_idle_time': total_idle,
@@ -379,7 +317,7 @@ class ActivityTracker:
                 }
                 
                 # Process app usage
-                for app_name, category, duration, sessions in app_usage:
+            for app_name, category, duration, sessions in app_usage:
                     summary['app_usage'].append({
                         'app_name': app_name,
                         'category': category,
@@ -392,21 +330,21 @@ class ActivityTracker:
                     summary['category_breakdown'][category] += duration
                 
                 # Calculate productivity score
-                summary['productivity_score'] = self._calculate_productivity_score(
+            summary['productivity_score'] = self._calculate_productivity_score(
                     dict(summary['category_breakdown']), total_active
                 )
                 
                 # Get most used app and category
-                if app_usage:
+            if app_usage:
                     summary['most_used_app'] = app_usage[0][0]
                     
-                if summary['category_breakdown']:
+            if summary['category_breakdown']:
                     summary['most_used_category'] = max(
                         summary['category_breakdown'].items(),
                         key=lambda x: x[1]
                     )[0]
                 
-                return summary
+            return summary
                 
         except Exception as e:
             self.logger.error(f"Error getting daily summary: {e}")

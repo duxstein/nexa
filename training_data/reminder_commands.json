@@ -1,0 +1,60 @@
+{
+  "description": "Training dataset for reminder and task setting commands",
+  "task_type": "reminder_management",
+  "created_date": "2024-01-15",
+  "version": "1.0",
+  "data": [
+    {"text": "remind me to call mom at 3pm", "label": "set_reminder_time", "confidence": 1.0, "parameters": {"task": "call mom", "time": "15:00"}},
+    {"text": "remind me to buy groceries at 5:30", "label": "set_reminder_time", "confidence": 1.0, "parameters": {"task": "buy groceries", "time": "17:30"}},
+    {"text": "set reminder for meeting tomorrow at 10am", "label": "set_reminder_datetime", "confidence": 1.0, "parameters": {"task": "meeting", "datetime": "tomorrow 10:00"}},
+    {"text": "remind me to take medicine in 30 minutes", "label": "set_reminder_relative", "confidence": 1.0, "parameters": {"task": "take medicine", "delay": "30 minutes"}},
+    {"text": "add reminder for dentist appointment next monday at 2pm", "label": "set_reminder_datetime", "confidence": 1.0, "parameters": {"task": "dentist appointment", "datetime": "next monday 14:00"}},
+    
+    {"text": "add task finish project report", "label": "add_task", "confidence": 1.0, "parameters": {"task": "finish project report"}},
+    {"text": "create task submit assignment", "label": "add_task", "confidence": 1.0, "parameters": {"task": "submit assignment"}},
+    {"text": "add new task clean the house", "label": "add_task", "confidence": 1.0, "parameters": {"task": "clean the house"}},
+    {"text": "create a task to pay bills", "label": "add_task", "confidence": 1.0, "parameters": {"task": "pay bills"}},
+    {"text": "add task buy birthday gift for sarah", "label": "add_task", "confidence": 1.0, "parameters": {"task": "buy birthday gift for sarah"}},
+    
+    {"text": "remind me to water plants every day at 8am", "label": "set_recurring_reminder", "confidence": 1.0, "parameters": {"task": "water plants", "time": "08:00", "frequency": "daily"}},
+    {"text": "set daily reminder to exercise at 7am", "label": "set_recurring_reminder", "confidence": 1.0, "parameters": {"task": "exercise", "time": "07:00", "frequency": "daily"}},
+    {"text": "remind me to check emails every weekday at 9am", "label": "set_recurring_reminder", "confidence": 1.0, "parameters": {"task": "check emails", "time": "09:00", "frequency": "weekdays"}},
+    {"text": "weekly reminder to backup files on sunday at 6pm", "label": "set_recurring_reminder", "confidence": 1.0, "parameters": {"task": "backup files", "time": "18:00", "frequency": "weekly", "day": "sunday"}},
+    
+    {"text": "remind me in 2 hours to take a break", "label": "set_reminder_relative", "confidence": 1.0, "parameters": {"task": "take a break", "delay": "2 hours"}},
+    {"text": "remind me to call john in 15 minutes", "label": "set_reminder_relative", "confidence": 1.0, "parameters": {"task": "call john", "delay": "15 minutes"}},
+    {"text": "set reminder for lunch in 1 hour", "label": "set_reminder_relative", "confidence": 1.0, "parameters": {"task": "lunch", "delay": "1 hour"}},
+    {"text": "remind me to leave for meeting in 45 minutes", "label": "set_reminder_relative", "confidence": 1.0, "parameters": {"task": "leave for meeting", "delay": "45 minutes"}},
+    
+    {"text": "add task finish homework due tomorrow", "label": "add_task_due", "confidence": 1.0, "parameters": {"task": "finish homework", "due": "tomorrow"}},
+    {"text": "create task prepare presentation for friday", "label": "add_task_due", "confidence": 1.0, "parameters": {"task": "prepare presentation", "due": "friday"}},
+    {"text": "add task buy groceries before sunday", "label": "add_task_due", "confidence": 1.0, "parameters": {"task": "buy groceries", "due": "before sunday"}},
+    {"text": "set task to review documents by end of week", "label": "add_task_due", "confidence": 1.0, "parameters": {"task": "review documents", "due": "end of week"}},
+    
+    {"text": "remind me at 2pm to call the doctor", "label": "set_reminder_time", "confidence": 1.0, "parameters": {"task": "call the doctor", "time": "14:00"}},
+    {"text": "set reminder 3pm team meeting", "label": "set_reminder_time", "confidence": 1.0, "parameters": {"task": "team meeting", "time": "15:00"}},
+    {"text": "remind me to pickup kids at 4:30", "label": "set_reminder_time", "confidence": 1.0, "parameters": {"task": "pickup kids", "time": "16:30"}},
+    {"text": "create reminder dinner with friends at 7pm", "label": "set_reminder_time", "confidence": 1.0, "parameters": {"task": "dinner with friends", "time": "19:00"}},
+    
+    {"text": "add important task submit report today", "label": "add_task_priority", "confidence": 1.0, "parameters": {"task": "submit report", "priority": "high"}},
+    {"text": "create urgent task fix server issue", "label": "add_task_priority", "confidence": 1.0, "parameters": {"task": "fix server issue", "priority": "urgent"}},
+    {"text": "add low priority task organize photos", "label": "add_task_priority", "confidence": 1.0, "parameters": {"task": "organize photos", "priority": "low"}},
+    {"text": "set medium priority task update resume", "label": "add_task_priority", "confidence": 1.0, "parameters": {"task": "update resume", "priority": "medium"}},
+    
+    {"text": "remind me tomorrow morning to check weather", "label": "set_reminder_datetime", "confidence": 1.0, "parameters": {"task": "check weather", "datetime": "tomorrow morning"}},
+    {"text": "set reminder next tuesday at 11am for dentist", "label": "set_reminder_datetime", "confidence": 1.0, "parameters": {"task": "dentist", "datetime": "next tuesday 11:00"}},
+    {"text": "remind me this evening to call mom", "label": "set_reminder_datetime", "confidence": 1.0, "parameters": {"task": "call mom", "datetime": "this evening"}},
+    {"text": "create reminder weekend to clean garage", "label": "set_reminder_datetime", "confidence": 1.0, "parameters": {"task": "clean garage", "datetime": "weekend"}},
+    
+    {"text": "show me my reminders", "label": "list_reminders", "confidence": 1.0, "parameters": {}},
+    {"text": "what are my tasks", "label": "list_tasks", "confidence": 1.0, "parameters": {}},
+    {"text": "list all reminders", "label": "list_reminders", "confidence": 1.0, "parameters": {}},
+    {"text": "show pending tasks", "label": "list_tasks", "confidence": 1.0, "parameters": {}},
+    {"text": "what reminders do i have", "label": "list_reminders", "confidence": 1.0, "parameters": {}},
+    
+    {"text": "delete reminder call mom", "label": "delete_reminder", "confidence": 1.0, "parameters": {"task": "call mom"}},
+    {"text": "remove task buy groceries", "label": "delete_task", "confidence": 1.0, "parameters": {"task": "buy groceries"}},
+    {"text": "cancel reminder for meeting", "label": "delete_reminder", "confidence": 1.0, "parameters": {"task": "meeting"}},
+    {"text": "delete task submit report", "label": "delete_task", "confidence": 1.0, "parameters": {"task": "submit report"}}
+  ]
+}

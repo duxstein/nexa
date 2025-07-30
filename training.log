@@ -1,0 +1,44 @@
+2025-07-30 16:19:28,713 - src.training.ai_trainer - INFO - Loaded model: application_commands_naive_bayes
+2025-07-30 16:19:28,713 - train_nexa - INFO - Starting training for dataset: application_commands
+2025-07-30 16:19:28,714 - train_nexa - INFO - Training naive_bayes model for application_commands
+2025-07-30 16:19:28,764 - train_nexa - INFO - Training svm model for application_commands
+2025-07-30 16:19:28,785 - train_nexa - INFO - Training random_forest model for application_commands
+2025-07-30 16:19:28,917 - train_nexa - INFO - Training transformer model for application_commands
+2025-07-30 16:20:07,397 - src.training.ai_trainer - ERROR - Error training transformer model: Using the `Trainer` with `PyTorch` requires `accelerate>=0.26.0`: Please run `pip install transformers[torch]` or `pip install 'accelerate>=0.26.0'`
+2025-07-30 16:20:07,403 - train_nexa - INFO - Starting training for dataset: reminder_commands
+2025-07-30 16:20:07,404 - train_nexa - INFO - Training naive_bayes model for reminder_commands
+2025-07-30 16:20:07,419 - train_nexa - INFO - Training svm model for reminder_commands
+2025-07-30 16:20:07,435 - train_nexa - INFO - Training random_forest model for reminder_commands
+2025-07-30 16:20:07,600 - train_nexa - INFO - Training transformer model for reminder_commands
+2025-07-30 16:20:08,313 - src.training.ai_trainer - ERROR - Error training transformer model: Using the `Trainer` with `PyTorch` requires `accelerate>=0.26.0`: Please run `pip install transformers[torch]` or `pip install 'accelerate>=0.26.0'`
+2025-07-30 16:20:08,318 - train_nexa - INFO - Starting training for dataset: complex_commands
+2025-07-30 16:20:08,318 - train_nexa - INFO - Training naive_bayes model for complex_commands
+2025-07-30 16:20:08,347 - train_nexa - INFO - Training svm model for complex_commands
+2025-07-30 16:20:08,364 - train_nexa - INFO - Training random_forest model for complex_commands
+2025-07-30 16:20:08,499 - train_nexa - INFO - Training transformer model for complex_commands
+2025-07-30 16:20:09,284 - src.training.ai_trainer - ERROR - Error training transformer model: Using the `Trainer` with `PyTorch` requires `accelerate>=0.26.0`: Please run `pip install transformers[torch]` or `pip install 'accelerate>=0.26.0'`
+2025-07-30 16:20:09,291 - train_nexa - INFO - 
+==================================================
+2025-07-30 16:20:09,291 - train_nexa - INFO - TRAINING SUMMARY
+2025-07-30 16:20:09,291 - train_nexa - INFO - ==================================================
+2025-07-30 16:20:09,291 - train_nexa - INFO - application_commands_naive_bayes: 0.19 accuracy (76 samples)
+2025-07-30 16:20:09,291 - train_nexa - INFO - application_commands_svm: 0.81 accuracy (76 samples)
+2025-07-30 16:20:09,291 - train_nexa - INFO - application_commands_random_forest: 0.81 accuracy (76 samples)
+2025-07-30 16:20:09,291 - train_nexa - INFO - reminder_commands_naive_bayes: 0.22 accuracy (43 samples)
+2025-07-30 16:20:09,291 - train_nexa - INFO - reminder_commands_svm: 0.33 accuracy (43 samples)
+2025-07-30 16:20:09,292 - train_nexa - INFO - reminder_commands_random_forest: 0.56 accuracy (43 samples)
+2025-07-30 16:20:09,292 - train_nexa - INFO - complex_commands_naive_bayes: 0.00 accuracy (29 samples)
+2025-07-30 16:20:09,292 - train_nexa - INFO - complex_commands_svm: 0.00 accuracy (29 samples)
+2025-07-30 16:20:09,292 - train_nexa - INFO - complex_commands_random_forest: 0.00 accuracy (29 samples)
+2025-07-30 16:20:09,292 - train_nexa - INFO - 
+Total trained models: 9
+2025-07-30 16:20:09,292 - train_nexa - INFO - Training completed!
+2025-07-30 16:20:09,293 - src.training.ai_trainer - INFO - Loaded model: application_commands_naive_bayes
+2025-07-30 16:20:09,299 - src.training.ai_trainer - INFO - Loaded model: application_commands_random_forest
+2025-07-30 16:20:09,300 - src.training.ai_trainer - INFO - Loaded model: application_commands_svm
+2025-07-30 16:20:09,306 - src.training.ai_trainer - INFO - Loaded model: complex_commands_naive_bayes
+2025-07-30 16:20:09,321 - src.training.ai_trainer - INFO - Loaded model: complex_commands_random_forest
+2025-07-30 16:20:09,330 - src.training.ai_trainer - INFO - Loaded model: complex_commands_svm
+2025-07-30 16:20:09,340 - src.training.ai_trainer - INFO - Loaded model: reminder_commands_naive_bayes
+2025-07-30 16:20:09,350 - src.training.ai_trainer - INFO - Loaded model: reminder_commands_random_forest
+2025-07-30 16:20:09,360 - src.training.ai_trainer - INFO - Loaded model: reminder_commands_svm

@@ -1,0 +1,48 @@
+{
+  "description": "Training dataset for complex and multi-action commands",
+  "task_type": "complex_operations",
+  "created_date": "2024-01-15",
+  "version": "1.0",
+  "data": [
+    {"text": "open chrome and search for python tutorials", "label": "open_and_search", "confidence": 1.0, "parameters": {"app": "chrome", "action": "search", "query": "python tutorials"}},
+    {"text": "launch teams and join the daily standup meeting", "label": "open_and_action", "confidence": 1.0, "parameters": {"app": "teams", "action": "join_meeting", "meeting": "daily standup"}},
+    {"text": "open excel and create new budget spreadsheet", "label": "open_and_create", "confidence": 1.0, "parameters": {"app": "excel", "action": "create", "type": "budget spreadsheet"}},
+    {"text": "start spotify and play my workout playlist", "label": "open_and_play", "confidence": 1.0, "parameters": {"app": "spotify", "action": "play_playlist", "playlist": "workout"}},
+    {"text": "open vscode and continue working on my project", "label": "open_and_continue", "confidence": 1.0, "parameters": {"app": "vscode", "action": "continue_project"}},
+    
+    {"text": "set reminder to check emails after lunch and open outlook", "label": "reminder_and_open", "confidence": 1.0, "parameters": {"task": "check emails", "time": "after lunch", "app": "outlook"}},
+    {"text": "remind me to backup files at 5pm and open file explorer", "label": "reminder_and_open", "confidence": 1.0, "parameters": {"task": "backup files", "time": "17:00", "app": "explorer"}},
+    {"text": "create task finish report by 3pm and open word", "label": "task_and_open", "confidence": 1.0, "parameters": {"task": "finish report", "due": "15:00", "app": "word"}},
+    
+    {"text": "close all browsers and open chrome", "label": "close_and_open", "confidence": 1.0, "parameters": {"close": ["firefox", "edge"], "open": "chrome"}},
+    {"text": "close spotify and open teams for meeting", "label": "close_and_open", "confidence": 1.0, "parameters": {"close": "spotify", "open": "teams", "reason": "meeting"}},
+    {"text": "exit all applications and restart computer", "label": "close_all_and_restart", "confidence": 1.0, "parameters": {"action": "restart", "close_all": true}},
+    
+    {"text": "open chrome search weather and set reminder to check forecast", "label": "search_reminder_combo", "confidence": 1.0, "parameters": {"search": "weather", "reminder": "check forecast", "app": "chrome"}},
+    {"text": "launch excel create budget and remind me to update it weekly", "label": "create_and_remind", "confidence": 1.0, "parameters": {"app": "excel", "create": "budget", "reminder": "update weekly", "frequency": "weekly"}},
+    
+    {"text": "open vscode start new python project and set daily reminder to code", "label": "project_setup", "confidence": 1.0, "parameters": {"app": "vscode", "project": "python", "reminder": "code daily", "frequency": "daily"}},
+    {"text": "setup development environment open chrome vs code and terminal", "label": "dev_environment", "confidence": 1.0, "parameters": {"apps": ["chrome", "vscode", "terminal"], "type": "development"}},
+    
+    {"text": "open calendar check today's schedule and set reminder for important meetings", "label": "calendar_check", "confidence": 1.0, "parameters": {"app": "calendar", "action": "check_schedule", "reminder": "important meetings"}},
+    {"text": "start productivity apps open todoist chrome and notepad", "label": "productivity_setup", "confidence": 1.0, "parameters": {"apps": ["todoist", "chrome", "notepad"], "type": "productivity"}},
+    
+    {"text": "open spotify play focus music and block notifications for 2 hours", "label": "focus_mode", "confidence": 1.0, "parameters": {"app": "spotify", "music": "focus", "block_notifications": "2 hours"}},
+    {"text": "launch gaming mode open steam close productivity apps", "label": "gaming_mode", "confidence": 1.0, "parameters": {"open": "steam", "close": "productivity", "mode": "gaming"}},
+    
+    {"text": "morning routine open chrome outlook teams and spotify", "label": "morning_routine", "confidence": 1.0, "parameters": {"apps": ["chrome", "outlook", "teams", "spotify"], "routine": "morning"}},
+    {"text": "evening routine close work apps open netflix and spotify", "label": "evening_routine", "confidence": 1.0, "parameters": {"close": "work_apps", "open": ["netflix", "spotify"], "routine": "evening"}},
+    
+    {"text": "workout time close all apps open spotify and set timer for 45 minutes", "label": "workout_mode", "confidence": 1.0, "parameters": {"close_all": true, "open": "spotify", "timer": "45 minutes", "mode": "workout"}},
+    {"text": "study mode open notepad chrome for research and block social media", "label": "study_mode", "confidence": 1.0, "parameters": {"apps": ["notepad", "chrome"], "block": "social_media", "mode": "study"}},
+    
+    {"text": "meeting preparation open teams outlook and set reminder 5 minutes before", "label": "meeting_prep", "confidence": 1.0, "parameters": {"apps": ["teams", "outlook"], "reminder": "5 minutes before", "type": "meeting"}},
+    {"text": "presentation setup open powerpoint chrome for references and start timer", "label": "presentation_setup", "confidence": 1.0, "parameters": {"apps": ["powerpoint", "chrome"], "timer": true, "type": "presentation"}},
+    
+    {"text": "research session open chrome vscode and create project folder", "label": "research_session", "confidence": 1.0, "parameters": {"apps": ["chrome", "vscode"], "create": "project_folder", "type": "research"}},
+    {"text": "coding time open vs code terminal spotify and set pomodoro timer", "label": "coding_session", "confidence": 1.0, "parameters": {"apps": ["vscode", "terminal", "spotify"], "timer": "pomodoro", "type": "coding"}},
+    
+    {"text": "lunch break close work apps open youtube and set 1 hour timer", "label": "lunch_break", "confidence": 1.0, "parameters": {"close": "work_apps", "open": "youtube", "timer": "1 hour", "type": "break"}},
+    {"text": "end of day close all applications and set reminder for tomorrow's tasks", "label": "end_of_day", "confidence": 1.0, "parameters": {"close_all": true, "reminder": "tomorrow's tasks", "type": "daily_cleanup"}}
+  ]
+}

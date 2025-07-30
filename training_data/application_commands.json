@@ -1,0 +1,99 @@
+{
+  "description": "Training dataset for application opening commands",
+  "task_type": "application_launch",
+  "created_date": "2024-01-15",
+  "version": "1.0",
+  "data": [
+    {"text": "open chrome", "label": "open_chrome", "confidence": 1.0},
+    {"text": "launch google chrome", "label": "open_chrome", "confidence": 1.0},
+    {"text": "start chrome browser", "label": "open_chrome", "confidence": 1.0},
+    {"text": "please open chrome for me", "label": "open_chrome", "confidence": 1.0},
+    {"text": "can you open google chrome", "label": "open_chrome", "confidence": 1.0},
+    {"text": "i need to open chrome", "label": "open_chrome", "confidence": 1.0},
+    {"text": "open up chrome", "label": "open_chrome", "confidence": 1.0},
+    {"text": "fire up chrome", "label": "open_chrome", "confidence": 1.0},
+    {"text": "get chrome running", "label": "open_chrome", "confidence": 1.0},
+    {"text": "open chrome application", "label": "open_chrome", "confidence": 1.0},
+    
+    {"text": "open firefox", "label": "open_firefox", "confidence": 1.0},
+    {"text": "launch mozilla firefox", "label": "open_firefox", "confidence": 1.0},
+    {"text": "start firefox browser", "label": "open_firefox", "confidence": 1.0},
+    {"text": "open firefox please", "label": "open_firefox", "confidence": 1.0},
+    {"text": "can you start firefox", "label": "open_firefox", "confidence": 1.0},
+    
+    {"text": "open edge", "label": "open_edge", "confidence": 1.0},
+    {"text": "launch microsoft edge", "label": "open_edge", "confidence": 1.0},
+    {"text": "start edge browser", "label": "open_edge", "confidence": 1.0},
+    {"text": "open ms edge", "label": "open_edge", "confidence": 1.0},
+    
+    {"text": "open notepad", "label": "open_notepad", "confidence": 1.0},
+    {"text": "launch notepad", "label": "open_notepad", "confidence": 1.0},
+    {"text": "start notepad application", "label": "open_notepad", "confidence": 1.0},
+    {"text": "open text editor", "label": "open_notepad", "confidence": 1.0},
+    {"text": "open notepad please", "label": "open_notepad", "confidence": 1.0},
+    
+    {"text": "open calculator", "label": "open_calculator", "confidence": 1.0},
+    {"text": "launch calculator", "label": "open_calculator", "confidence": 1.0},
+    {"text": "start calculator app", "label": "open_calculator", "confidence": 1.0},
+    {"text": "open calc", "label": "open_calculator", "confidence": 1.0},
+    {"text": "i need to use calculator", "label": "open_calculator", "confidence": 1.0},
+    
+    {"text": "open file explorer", "label": "open_explorer", "confidence": 1.0},
+    {"text": "launch file explorer", "label": "open_explorer", "confidence": 1.0},
+    {"text": "open windows explorer", "label": "open_explorer", "confidence": 1.0},
+    {"text": "start explorer", "label": "open_explorer", "confidence": 1.0},
+    {"text": "open my files", "label": "open_explorer", "confidence": 1.0},
+    
+    {"text": "open task manager", "label": "open_taskmgr", "confidence": 1.0},
+    {"text": "launch task manager", "label": "open_taskmgr", "confidence": 1.0},
+    {"text": "start taskmgr", "label": "open_taskmgr", "confidence": 1.0},
+    {"text": "open system monitor", "label": "open_taskmgr", "confidence": 1.0},
+    
+    {"text": "open word", "label": "open_word", "confidence": 1.0},
+    {"text": "launch microsoft word", "label": "open_word", "confidence": 1.0},
+    {"text": "start word document", "label": "open_word", "confidence": 1.0},
+    {"text": "open ms word", "label": "open_word", "confidence": 1.0},
+    {"text": "open word application", "label": "open_word", "confidence": 1.0},
+    
+    {"text": "open excel", "label": "open_excel", "confidence": 1.0},
+    {"text": "launch microsoft excel", "label": "open_excel", "confidence": 1.0},
+    {"text": "start excel spreadsheet", "label": "open_excel", "confidence": 1.0},
+    {"text": "open ms excel", "label": "open_excel", "confidence": 1.0},
+    
+    {"text": "open powerpoint", "label": "open_powerpoint", "confidence": 1.0},
+    {"text": "launch powerpoint", "label": "open_powerpoint", "confidence": 1.0},
+    {"text": "start powerpoint presentation", "label": "open_powerpoint", "confidence": 1.0},
+    {"text": "open ppt", "label": "open_powerpoint", "confidence": 1.0},
+    
+    {"text": "open outlook", "label": "open_outlook", "confidence": 1.0},
+    {"text": "launch outlook email", "label": "open_outlook", "confidence": 1.0},
+    {"text": "start microsoft outlook", "label": "open_outlook", "confidence": 1.0},
+    {"text": "open email client", "label": "open_outlook", "confidence": 1.0},
+    
+    {"text": "open teams", "label": "open_teams", "confidence": 1.0},
+    {"text": "launch microsoft teams", "label": "open_teams", "confidence": 1.0},
+    {"text": "start teams application", "label": "open_teams", "confidence": 1.0},
+    {"text": "open teams meeting app", "label": "open_teams", "confidence": 1.0},
+    
+    {"text": "open vs code", "label": "open_vscode", "confidence": 1.0},
+    {"text": "launch visual studio code", "label": "open_vscode", "confidence": 1.0},
+    {"text": "start code editor", "label": "open_vscode", "confidence": 1.0},
+    {"text": "open vscode", "label": "open_vscode", "confidence": 1.0},
+    {"text": "open visual studio code", "label": "open_vscode", "confidence": 1.0},
+    
+    {"text": "open spotify", "label": "open_spotify", "confidence": 1.0},
+    {"text": "launch spotify music", "label": "open_spotify", "confidence": 1.0},
+    {"text": "start spotify application", "label": "open_spotify", "confidence": 1.0},
+    {"text": "open music player", "label": "open_spotify", "confidence": 1.0},
+    
+    {"text": "open steam", "label": "open_steam", "confidence": 1.0},
+    {"text": "launch steam gaming", "label": "open_steam", "confidence": 1.0},
+    {"text": "start steam application", "label": "open_steam", "confidence": 1.0},
+    {"text": "open game launcher", "label": "open_steam", "confidence": 1.0},
+    
+    {"text": "open discord", "label": "open_discord", "confidence": 1.0},
+    {"text": "launch discord chat", "label": "open_discord", "confidence": 1.0},
+    {"text": "start discord application", "label": "open_discord", "confidence": 1.0},
+    {"text": "open discord app", "label": "open_discord", "confidence": 1.0}
+  ]
+}
